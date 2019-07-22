@@ -15,7 +15,6 @@
 
 <script>
 import $ from 'jquery';
-import _ from 'lodash';
 
 import Card from '@/components/mtg/card.vue';
 

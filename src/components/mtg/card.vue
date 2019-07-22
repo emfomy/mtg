@@ -13,7 +13,7 @@
       <b-col cols="12" md="8" lg="9">
         <h4>{{ name }}</h4>
         <h5>{{ type }}</h5>
-        <p v-for="item in rules" v-html="item.innerHTML" />
+        <div v-html="rules" />
       </b-col>
     </b-row>
   </b-card>
@@ -21,6 +21,7 @@
 
 <script>
 import $ from 'jquery';
+import _ from 'lodash';
 
 const zhMap = {
   'Ajani Goldmane' :'金鬃阿耶尼',
@@ -123,7 +124,7 @@ export default {
       const ruleEl = htmlEl.find('.well.well-jumbotron > div > div').first();
       this.name = ruleEl.find('h1').text().trim(); ruleEl.find('h1').remove();
       this.type = ruleEl.find('h3').text().trim(); ruleEl.find('h3').remove();
-      this.rules = ruleEl;
+      this.rules = ruleEl.html();
     },
   },
 };

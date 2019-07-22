@@ -1,0 +1,11 @@
+$enable-shadows: true;
+
+@import "~bootstrap/scss/bootstrap";
+@import "./_color";
+@import "./_font";
+
+.card {
+  box-shadow: $box-shadow-sm;
+}
+
+@import "./mtg"

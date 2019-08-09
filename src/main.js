@@ -2,11 +2,11 @@ import Vue from 'vue';
 
 import './assets/scss/main.scss';
 
-import './include/axios';
-import './include/bootstrap';
+import './plugins/axios';
+import './plugins/bootstrap';
 
 import App from './App.vue';
-import router from './include/router';
+import router from './plugins/router';
 
 Vue.config.productionTip = false;
 

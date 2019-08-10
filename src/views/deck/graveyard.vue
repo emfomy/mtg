@@ -23,7 +23,7 @@ export default {
         { num: 3, code: 'c17', id: '292', zhName: '虹霓泥沼' },
         { num: 4, code: 'xln', id: '253', zhName: '水沒墓穴' },
         { num: 3, code: 'shm', id: '280', zhName: '沉沒廢墟' },
-        { num: 3, code: 'prm', id: '59655', zhName: '蓋亞的育苗地' },
+        { num: 1, code: 'prm', id: '59655', zhName: '蓋亞的育苗地' },
 
         { num: 1, code: 'uma', id: '31', zhName: '醒靈雲雀' },
 

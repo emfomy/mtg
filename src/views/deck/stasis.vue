@@ -40,6 +40,8 @@ export default {
         { num: 2, code: 'ima', id: '48', zhName: '地下指命' },
       ],
       sideboard: [
+        { num: 0, code: 'c18', id: '253', zhName: '哈利瑪奥流' },
+
         { num: 2, code: 'a25', id: '62', zhName: '心靈術師傑斯' },
 
         { num: 3, code: 'mor', id: '35', zhName: '秘錄竊賊' },

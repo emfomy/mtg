@@ -25,14 +25,14 @@ export default {
         { num: 2, code: 'm11', id: '1', zhName: '金鬃阿耶尼' },
         { num: 2, code: 'mma', id: '13', zhName: '遊俠艾紫培' },
 
-        { num: 3, code: 'mor', id: '5', zhName: '仕紳策士' },
         { num: 3, code: 'lrw', id: '8', zhName: '仕紳傳人' },
+        { num: 3, code: 'mor', id: '5', zhName: '仕紳策士' },
         { num: 3, code: 'cma', id: '16', zhName: '鏡身靈' },
 
-        { num: 3, code: 'lrw', id: '30', zhName: '義勇軍之傲' },
-        { num: 2, code: '9ed', id: '55', zhName: '崇拜' },
         { num: 2, code: 'ons', id: '6', zhName: '點金術' },
         { num: 2, code: 'tpr', id: '16', zhName: '謙卑' },
+        { num: 3, code: 'lrw', id: '30', zhName: '義勇軍之傲' },
+        { num: 2, code: '9ed', id: '55', zhName: '崇拜' },
         { num: 2, code: 'cmd', id: '27', zhName: '刑期' },
 
         { num: 4, code: 'mor', id: '12', zhName: '田園導師' },

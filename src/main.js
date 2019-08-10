@@ -2,8 +2,8 @@ import Vue from 'vue';
 
 import './assets/scss/main.scss';
 
-import './plugins/axios';
 import './plugins/bootstrap';
+import './plugins/scryfall';
 
 import App from './App.vue';
 import router from './plugins/router';

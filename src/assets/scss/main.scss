@@ -1,6 +1,19 @@
-$enable-shadows: true;
+// Font Family
+@import url('https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i&display=swap&subset=latin-ext');
 
+$font-family-base: "Lora", serif;
+
+i {
+  font-family: "Libre Baskerville", serif;
+  font-size: .875em;
+}
+
+// Bootstrap
+$enable-shadows: true;
 @import "~bootstrap/scss/bootstrap";
+
+// Custom
 @import "./_color";
 @import "./_font";
 
@@ -8,4 +21,6 @@ $enable-shadows: true;
   box-shadow: $box-shadow-sm;
 }
 
-@import "./mtg"
+.scryfall-symbol {
+  height: 1em;
+}

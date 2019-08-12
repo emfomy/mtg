@@ -27,14 +27,30 @@ const data = {
     color: 'secondary',
   },
 };
-
 const dataInv = _.invertBy(data, 'key');
 
 export default {
-  encode(key) {
-    return _.get(dataInv, `${key}[0]`, 0);
+  data() {
+    return {
+      legalityData: {
+        standard: 0,
+        modern: 0,
+        legacy: 0,
+        commander: 0,
+      },
+    };
   },
-  decode(key) {
-    return _.get(data, key, data.unknown);
+  computed: {
+    legality() {
+      return _.mapValues(this.legalityData, this.decodeLegality);
+    },
+  },
+  methods: {
+    encodeLegality(key) {
+      return _.get(dataInv, `${key}[0]`, 0);
+    },
+    decodeLegality(key) {
+      return _.get(data, key, data.unknown);
+    },
   },
 };

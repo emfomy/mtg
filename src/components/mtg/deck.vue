@@ -50,12 +50,12 @@
 <script>
 import _ from 'lodash';
 
-import Legality from '@/data/legality';
-
 import Card from '@/components/mtg/card.vue';
+import LegalityMixim from '@/mixins/legality';
 
 export default {
   name: 'Deck',
+  mixins: [LegalityMixim],
   components: {
     Card,
   },
@@ -78,19 +78,7 @@ export default {
       default: () => [],
     },
   },
-  data() {
-    return {
-      legalityData: {
-        standard: 0,
-        modern: 0,
-        legacy: 0,
-      },
-    };
-  },
   computed: {
-    legality() {
-      return _.mapValues(this.legalityData, Legality.decode);
-    },
     mainboardSize() {
       return _.sumBy(this.mainboard, 'num');
     },
@@ -109,6 +97,7 @@ export default {
       this.legalityData.standard = _.max([this.legalityData.standard, value.standard]);
       this.legalityData.modern = _.max([this.legalityData.modern, value.modern]);
       this.legalityData.legacy = _.max([this.legalityData.legacy, value.legacy]);
+      this.legalityData.commander = _.max([this.legalityData.commander, value.commander]);
     },
   },
 };

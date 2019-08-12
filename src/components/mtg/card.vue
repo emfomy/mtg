@@ -8,11 +8,11 @@
          :key="key"
           pill
          :variant="item.color"
-          class="mx-1"
+          class="ml-1"
         >
           {{ key }} | {{ item.name }}
         </b-badge>
-        <b-button size="sm" variant="outline-secondary" @click="fetch">Refresh</b-button>
+        <!-- <b-button size="sm" variant="outline-secondary" @click="fetch">Refresh</b-button> -->
       </div>
     </div>
     <b-row>
@@ -49,9 +49,11 @@
 import _ from 'lodash';
 
 import Symbols from '@/data/symbols';
-import Legality from '@/data/legality';
+
+import LegalityMixim from '@/mixins/legality';
 
 export default {
+  mixins: [LegalityMixim],
   name: 'Card',
   props: {
     num: Number,
@@ -69,20 +71,11 @@ export default {
       oracle: null,
       flaver: null,
 
-      legalityData: {
-        standard: 0,
-        modern: 0,
-        legacy: 0,
-      },
-
       errorTitle: null,
       errorMsg: null,
     };
   },
   computed: {
-    legality() {
-      return _.mapValues(this.legalityData, Legality.decode);
-    },
     link() {
       return `https://scryfall.com/card/${this.code}/${this.id}`;
     },
@@ -97,7 +90,7 @@ export default {
 
       this.$http
         .get(`https://api.scryfall.com/cards/${this.code}/${this.id}`)
-        .then((res) => (res.data))
+        .then(res => (res.data))
         .then((json) => {
           this.name = json.name;
           this.type = json.type_line;
@@ -107,9 +100,10 @@ export default {
           this.oracle = _.filter(_.split(this.parse_text(json.oracle_text), '\n'));
           this.flaver = _.filter(_.split(json.flavor_text, '\n'));
 
-          this.legalityData.standard = Legality.encode(json.legalities.standard);
-          this.legalityData.modern = Legality.encode(json.legalities.modern);
-          this.legalityData.legacy = Legality.encode(json.legalities.legacy);
+          this.legalityData.standard = this.encodeLegality(json.legalities.standard);
+          this.legalityData.modern = this.encodeLegality(json.legalities.modern);
+          this.legalityData.legacy = this.encodeLegality(json.legalities.legacy);
+          this.legalityData.commander = this.encodeLegality(json.legalities.commander);
 
           this.$emit('updateLegalityData', this.legalityData);
         })

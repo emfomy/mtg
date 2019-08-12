@@ -91,12 +91,13 @@ export default {
     this.fetch();
   },
   methods: {
-    async fetch() {
+    fetch() {
       this.errorTitle = null;
       this.errorMsg = null;
 
-      return this.$scryfall
-        .get(`cards/${this.code}/${this.id}`)
+      this.$http
+        .get(`https://api.scryfall.com/cards/${this.code}/${this.id}`)
+        .then((res) => (res.data))
         .then((json) => {
           this.name = json.name;
           this.type = json.type_line;

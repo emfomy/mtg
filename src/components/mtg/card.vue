@@ -1,9 +1,20 @@
 <template>
   <b-card>
-    <h5 slot="header" class="d-flex flex-row justify-content-between mb-0">
-      <span class="align-self-center flex-grow-1">{{ num }}x {{ zhName }}</span>
-      <b-button size="sm" variant="outline-secondary" @click="fetch">Refresh</b-button>
-    </h5>
+    <div slot="header" class="d-flex flex-row justify-content-between mb-0">
+      <h5 class="align-self-center flex-grow-1 mb-0">{{ num }}x {{ zhName }}</h5>
+      <div>
+        <b-badge
+          v-for="(item, key) in legality"
+         :key="key"
+          pill
+         :variant="item.color"
+          class="mx-1"
+        >
+          {{ key }} | {{ item.name }}
+        </b-badge>
+        <b-button size="sm" variant="outline-secondary" @click="fetch">Refresh</b-button>
+      </div>
+    </div>
     <b-row>
       <b-col cols="8" sm="6" md="4" lg="3">
         <b-link :href="link" target="_blank">
@@ -36,7 +47,9 @@
 
 <script>
 import _ from 'lodash';
-import symbols from '@/plugins/scryfall-symbols';
+
+import Symbols from '@/data/symbols';
+import Legality from '@/data/legality';
 
 export default {
   name: 'Card',
@@ -56,11 +69,20 @@ export default {
       oracle: null,
       flaver: null,
 
+      legalityData: {
+        standard: 0,
+        modern: 0,
+        legacy: 0,
+      },
+
       errorTitle: null,
       errorMsg: null,
     };
   },
   computed: {
+    legality() {
+      return _.mapValues(this.legalityData, Legality.decode);
+    },
     link() {
       return `https://scryfall.com/card/${this.code}/${this.id}`;
     },
@@ -69,11 +91,11 @@ export default {
     this.fetch();
   },
   methods: {
-    fetch() {
+    async fetch() {
       this.errorTitle = null;
       this.errorMsg = null;
 
-      this.$scryfall
+      return this.$scryfall
         .get(`cards/${this.code}/${this.id}`)
         .then((json) => {
           this.name = json.name;
@@ -83,6 +105,12 @@ export default {
           this.cost = this.parse_symbol(json.mana_cost);
           this.oracle = _.filter(_.split(this.parse_text(json.oracle_text), '\n'));
           this.flaver = _.filter(_.split(json.flavor_text, '\n'));
+
+          this.legalityData.standard = Legality.encode(json.legalities.standard);
+          this.legalityData.modern = Legality.encode(json.legalities.modern);
+          this.legalityData.legacy = Legality.encode(json.legalities.legacy);
+
+          this.$emit('updateLegalityData', this.legalityData);
         })
         .catch((error) => {
           this.errorTitle = error.name;
@@ -112,7 +140,7 @@ export default {
       if (matches) {
         matches.forEach((symbol) => {
           const key = symbol.slice(1, -1);
-          text = text.replace(symbol, `<img class="scryfall-symbol" src="${symbols[key]}"/>`);
+          text = text.replace(symbol, `<img class="scryfall-symbol" src="${Symbols[key]}"/>`);
         });
       }
       return text;

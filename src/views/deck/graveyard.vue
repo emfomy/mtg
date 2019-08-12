@@ -3,11 +3,12 @@
     name="Black - Graveyard"
     :mainboard="mainboard"
     :sideboard="sideboard"
+    :maybes="maybes"
   />
 </template>
 
 <script>
-import Deck from './_deck.vue';
+import Deck from '@/components/mtg/deck.vue';
 
 export default {
   name: 'Graveyard',
@@ -49,6 +50,8 @@ export default {
         { num: 4, code: 'uma', id: '94', zhName: '入土' },
       ],
       sideboard: [
+      ],
+      maybes: [
         { num: 0, code: 'vma', id: '323', zhName: '沉落幽谷' },
         { num: 0, code: 'ima', id: '246', zhName: '清淚長河' },
         { num: 0, code: 'grn', id: '259', zhName: '積水墓地' },

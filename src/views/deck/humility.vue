@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Deck from './_deck.vue';
+import Deck from '@/components/mtg/deck.vue';
 
 export default {
   name: 'Humility',

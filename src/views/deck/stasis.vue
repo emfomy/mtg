@@ -18,7 +18,8 @@ export default {
     /* eslint-disable object-curly-newline */
     return {
       mainboard: [
-        { num: 22, code: 'j14', id: '2★', zhName: '海島' },
+        // { num: 22, code: 'j14', id: '2★', zhName: '海島' },
+        { num: 22, code: 'ust', id: '213', zhName: '海島' },
         { num: 4, code: 'zen', id: '218', zhName: '水簾馬格西' },
 
         { num: 2, code: 'm11', id: '58', zhName: '傑斯貝連' },

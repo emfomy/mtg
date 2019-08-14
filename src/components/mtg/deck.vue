@@ -94,10 +94,9 @@ export default {
   },
   methods: {
     updateLegalityData(value) {
-      this.legalityData.standard = _.max([this.legalityData.standard, value.standard]);
-      this.legalityData.modern = _.max([this.legalityData.modern, value.modern]);
-      this.legalityData.legacy = _.max([this.legalityData.legacy, value.legacy]);
-      this.legalityData.commander = _.max([this.legalityData.commander, value.commander]);
+      _.forEach(this.legalityData, (__, key) => {
+        this.legalityData[key] = _.max([this.legalityData[key], value[key]]);
+      });
     },
   },
 };

@@ -18,7 +18,7 @@
     <b-row>
       <b-col cols="8" sm="6" md="4" lg="3">
         <b-link :href="link" target="_blank">
-          <b-img fluid-grow :src="img" />
+          <b-img-lazy fluid-grow :src="img" blank-src="@/assets/images/mtg_back.jpg" />
         </b-link>
       </b-col>
       <b-col cols="12" md="8" lg="9">
@@ -100,10 +100,9 @@ export default {
           this.oracle = _.filter(_.split(this.parse_text(json.oracle_text), '\n'));
           this.flaver = _.filter(_.split(json.flavor_text, '\n'));
 
-          this.legalityData.standard = this.encodeLegality(json.legalities.standard);
-          this.legalityData.modern = this.encodeLegality(json.legalities.modern);
-          this.legalityData.legacy = this.encodeLegality(json.legalities.legacy);
-          this.legalityData.commander = this.encodeLegality(json.legalities.commander);
+          _.forEach(this.legalityData, (__, key) => {
+            this.legalityData[key] = this.encodeLegality(json.legalities[key]);
+          });
 
           this.$emit('updateLegalityData', this.legalityData);
         })
@@ -135,7 +134,7 @@ export default {
       if (matches) {
         matches.forEach((symbol) => {
           const key = symbol.slice(1, -1);
-          text = text.replace(symbol, `<img class="scryfall-symbol" src="${Symbols[key]}"/>`);
+          text = text.replace(symbol, `<img class="mtg-symbol" src="${Symbols[key]}"/>`);
         });
       }
       return text;

@@ -36,7 +36,6 @@ export default {
         standard: 0,
         modern: 0,
         legacy: 0,
-        commander: 0,
       },
     };
   },

@@ -19,7 +19,8 @@ export default {
     /* eslint-disable object-curly-newline */
     return {
       mainboard: [
-        { num: 22, code: 'j14', id: '1★', zhName: '平原' },
+        // { num: 22, code: 'j14', id: '1★', zhName: '平原' },
+        { num: 22, code: 'ust', id: '212', zhName: '平原' },
         { num: 4, code: 'td2', id: '39', zhName: '險要的瞭望臺' },
 
         { num: 2, code: 'm11', id: '1', zhName: '金鬃阿耶尼' },

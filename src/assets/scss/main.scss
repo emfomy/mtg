@@ -9,18 +9,34 @@ i {
   font-size: .875em;
 }
 
-// Bootstrap
+// Shadow
 $enable-shadows: true;
+
+// Color
+$milk: #dcd9cd;
+$milk-light: lighten($milk, 10%);
+$milk-dark: darken($milk, 10%);
+
+$theme-colors: (
+  "milk": $milk,
+  "milk-light": $milk-light,
+  "milk-dark": $milk-dark,
+);
+
+// Bootstrap
 @import "~bootstrap/scss/bootstrap";
 
-// Custom
-@import "./_color";
-@import "./_font";
-
+// Card Shadow
 .card {
   box-shadow: $box-shadow-sm;
 }
 
-.scryfall-symbol {
+// Font Size
+html {
+  font-size: 16px;
+}
+
+// Custom
+.mtg-symbol {
   height: 1em;
 }
